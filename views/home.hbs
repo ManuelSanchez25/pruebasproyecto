@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+</head>
+<body>
+
+   <div style="width:50%">
+<canvas id="temperatura" width="10" height="10"></canvas>
+<script>
+    
+    let miCanvas=document.getElementById("temperatura").getContext("2d");
+    let chart =new Chart(miCanvas,{
+        type:"bar",
+        data:{
+            labels:[this.auxVars.map((el) => el.day)],
+            datasets:[
+            {
+                label:"Temperatura",
+               // backgroundColor: "rgb(0,0,0)",
+                data:[1,2]
+            }
+            ]
+        }
+    })
+    
+</script>
+
+</div>
+</body>
+
+</html>
+
+
+
+
+{{#each variab}}
+<div class="container">
+    <div>
+        <br>
+        <br>
+        <span class="attribute">
+            <strong>Luminucidad:</strong>{{this.luminusidad}}
+        </span>
+        <br>
+        <span class="attribute">
+            <strong>Temperatura:</strong> {{this.temperatura}}
+        </span>
+        <br>
+        <span class="attribute">
+            <strong>Humedad:</strong> {{this.humedad}}
+        </span>
+        <br>
+    </div>
+</div>
+<br>
+<br>
+{{/each}}
+
+
+<div class="div-btn">
+            <a href="/login"> <button class="button-details"> Back to Login!</a>
+            </button>
+</div>

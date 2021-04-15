@@ -1,0 +1,19 @@
+[
+    {
+        "luminusidad": 1,
+        "temperatura": 15
+    },
+    {
+        "luminusidad": 2,
+        "temperatura": 18
+    },
+    {
+        "luminusidad": 3,
+        "temperatura":25
+    },
+    
+    {
+        "luminusidad": 33,
+        "temperatura":25
+    }
+]
