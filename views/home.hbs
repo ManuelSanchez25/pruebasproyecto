@@ -1,36 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    
-</head>
-<body>
 
-   <div style="width:50%">
-<canvas id="temperatura" width="10" height="10"></canvas>
-<script>
-    
-    let miCanvas=document.getElementById("temperatura").getContext("2d");
-    let chart =new Chart(miCanvas,{
-        type:"bar",
-        data:{
-            labels:[this.auxVars.map((el) => el.day)],
-            datasets:[
-            {
-                label:"Temperatura",
-               // backgroundColor: "rgb(0,0,0)",
-                data:[1,2]
+</head>
+
+<body>
+    <p>
+        Ciudad : {{{this.lugar}}}
+    </p>
+    <p>
+        Cultivo : {{{this.cultivo}}}
+    </p>
+    <table WIDTH="20%">
+
+        <tr>
+
+            <td>
+                <div>
+                    <canvas id="temperatura"></canvas>
+                </div>
+                <script>
+                    let miCanvas = document.getElementById("temperatura").getContext("2d");
+                    let chart = new Chart(miCanvas, {
+                        type: "bar",
+                        data: {
+                            labels: [{{{ this.litros }}}
+                    ],
+                        datasets: [
+                        {
+                            label: "Litros por día",
+                            // backgroundColor: "rgb(0,0,0)",
+                            data: [{{{ this.dia }}}]
             }
             ]
         }
     })
-    
-</script>
 
-</div>
+                </script>
+
+
+
+            <td>
+                <div>
+                    <canvas id="temperatura2"></canvas>
+                </div>
+                <script>
+                    let miCanvas2 = document.getElementById("temperatura2").getContext("2d");
+                    let chart2 = new Chart(miCanvas2, {
+                        type: "bar",
+                        data: {
+                            labels: [{{{ this.dia }}}
+                    ],
+                        datasets: [
+                        {
+                            label: "Segundos regados por día",
+                            // backgroundColor: "rgb(0,0,0)",
+                            data: [{{{ this.irrigationTimeSec }}}]
+            }
+            ]
+        }
+    })
+
+                </script>
+
+
+            </td>
+
+
+
+        </tr>
+
+        <tr>
+
+            <td>Celda 4</td>
+
+            <td>Celda 5</td>
+
+
+        </tr>
+
+    </table>
+
 </body>
 
 </html>
@@ -63,6 +118,6 @@
 
 
 <div class="div-btn">
-            <a href="/login"> <button class="button-details"> Back to Login!</a>
-            </button>
+    <a href="/login"> <button class="button-details"> Back to Login!</a>
+    </button>
 </div>
