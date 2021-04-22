@@ -1,9 +1,8 @@
 ---
 applications:
-- name: testing
+- path: .
+  name: ProyectoIot
+  buildpack: sdk-for-nodejs
+  instances: 1
+  memory: 256M
   random-route: true
-  memory: 128M
-  disk_quota: 256MB
-  buildpacks: 
-  - sdk-for-nodejs
-  path: .
