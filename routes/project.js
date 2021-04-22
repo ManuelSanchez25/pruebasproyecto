@@ -40,14 +40,14 @@ router.get('/home', async function (req, res, next) {
   }
   
 
-  console.log(auxForV1);
-  console.log(litros);
-  console.log(dia);
-  console.log(lugar);
+  //console.log(auxForV1);
+  //console.log(litros);
+  //console.log(dia);
+ // console.log(lugar);
   res.render('home', {
     auxForV1,litros,dia,irrigationTimeSec,lugar,cultivo
   })
-  console.log("JSON from the table of SensorsData: " + auxJSON);
+ // console.log("JSON from the table of SensorsData: " + auxJSON);
 }); 
 
 
