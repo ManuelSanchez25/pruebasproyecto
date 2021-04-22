@@ -5,5 +5,5 @@ applications:
   memory: 128M
   disk_quota: 256MB
   buildpacks: 
-  - sdk-for-nodejs
-- path: .
+  - python_buildpack
+  path: .
