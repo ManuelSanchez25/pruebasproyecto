@@ -1,14 +1,9 @@
 var AWS = require("aws-sdk");
 
-let awsConfig = {
-    "aws_access_key_id" : "ASIAVQ3FWTFCPNZGMREF",
-"aws_secret_access_key" :"sf4d8Tjr6n5l/1ffpln5b8eCb8gS5gfuwMgVKte2",
-"region": 'us-east-1'
-};
-//var credentials = new AWS.SharedIniFileCredentials({ profile: 'default' });
+var credentials = new AWS.SharedIniFileCredentials({ profile: 'default' });
 
-AWS.config.update( awsConfig );
-//AWS.config.credentials = credentials;
+AWS.config.update({ region: 'us-east-1' });
+AWS.config.credentials = credentials;
 let variabless
 let docClient = new AWS.DynamoDB.DocumentClient();
 
