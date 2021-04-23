@@ -9,33 +9,37 @@
 
 </head>
 
-<body>
+
+<body style="background-color:rgba(185, 240, 215, 0.5);">
+
     <p>
         Ciudad : {{{this.lugar}}}
     </p>
     <p>
         Cultivo : {{{this.cultivo}}}
     </p>
-    <table WIDTH="20%">
+    <table width=50% >
 
-        <tr>
-
+        <tr >
             <td>
                 <div>
-                    <canvas id="temperatura"></canvas>
+                    <canvas id="temperatura4"></canvas>
                 </div>
                 <script>
-                    let miCanvas = document.getElementById("temperatura").getContext("2d");
-                    let chart = new Chart(miCanvas, {
-                        type: "bar",
+                    let miCanvas4 = document.getElementById("temperatura4").getContext("2d");
+                    let chart4 = new Chart(miCanvas4, {
+                        type: "line",
                         data: {
-                            labels: [{{{ this.litros }}}
-                    ],
+                            labels: {{{ this.time }}}
+                    ,
                         datasets: [
                         {
-                            label: "Litros por día",
+                            label: "Luz por hora del día",
                             // backgroundColor: "rgb(0,0,0)",
-                            data: [{{{ this.dia }}}]
+                            data: [{{{ this.light }}}],
+                            backgroundColor: [
+      'rgba(255, 99, 132, 0.2)'
+      ]
             }
             ]
         }
@@ -44,8 +48,12 @@
                 </script>
 
 
+            
+               </td>
 
-            <td>
+            
+
+            <td >
                 <div>
                     <canvas id="temperatura2"></canvas>
                 </div>
@@ -77,15 +85,129 @@
 
         <tr>
 
-            <td>Celda 4</td>
+           <td>
+                <div>
+                    <canvas id="temperatura3"></canvas>
+                </div>
+                <script>
+                    let miCanvas3 = document.getElementById("temperatura3").getContext("2d");
+                    let chart3 = new Chart(miCanvas3, {
+                        type: "line",
+                        data: {
+                            labels: {{{ this.time }}}
+                    ,
+                        datasets: [
+                        {
+                            label: "Humedad por hora",
+                            // backgroundColor: "rgb(0,0,0)",
+                            data: [{{{ this.auxForV1 }}}]
+            }
+            ]
+        }
+    })
 
-            <td>Celda 5</td>
+                </script>
+
+
+            </td>
+               
+
+    <td >
+                <div>
+                    <canvas id="temperatura"></canvas>
+                </div>
+                <script>
+                    let miCanvas = document.getElementById("temperatura").getContext("2d");
+                    let chart = new Chart(miCanvas, {
+                        type: "bar",
+                        data: {
+                            labels: [{{{ this.litros }}},
+                            
+                    ],
+                        datasets: [
+                        {
+                            label: "Litros por día",
+                            // backgroundColor: "rgb(0,0,0)",
+                            data: [{{{ this.dia }}}],
+                            backgroundColor: [
+      'rgba(255, 99, 132, 0.2)','rgba(255, 159, 64, 0.2)'
+      ]
+
+            }
+            ]
+        }
+    })
+
+                </script>
+
+</td>
 
 
         </tr>
+        
 
     </table>
+<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Busca por tiempo" title="Type in a name">
+    <table id="myTable">
+                <thead>
+                    <tr>
+                        <th scope="col">sensorDataId</th>
+                        <th scope="col">airHumidity</th>
+                        <th scope="col">airTemperature</th>
+                        <th scope="col">rainDrops</th>
+                        <th scope="col">SoilHumidity</th>
+                        <th scope="col"> timestamp</th>
+                        <th scope="col">light</th>
 
+                    </tr>
+                </thead>
+                <tbody id="contenido">
+                    
+                </tbody>
+            </table>
+          <script>
+        var contenido = document.querySelector('#contenido')
+
+      
+            // console.log(datos)
+            contenido.innerHTML = ''
+            for(let valor of {{{this.datosbrutos}}}){
+                // console.log(valor.nombre)
+                contenido.innerHTML += `
+                
+                <tr>
+                    <th scope="row">${ valor.sensorDataId }</th>
+                    <td>${ valor.airHumidity }</td>
+                    <td>${ valor.airTemperature }</td>
+                    <td>${ valor.rainDrops }</td>
+                    <td>${ valor.soilHumidity }</td>
+                    <td>${ valor.timestamp }</td>
+                    <td>${ valor.light }</td>
+
+                </tr>
+                
+                `
+            }
+function myFunction() {
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[4];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }       
+  }
+}
+    </script>
+    
 </body>
 
 </html>

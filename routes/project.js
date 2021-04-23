@@ -7,11 +7,17 @@ router.get('/login', (req, res) => {
   res.render('login');
 });
 
+//presentacion
+router.get('/presentacion', (req, res) => {
+  res.render('presentacion');
+});
+
 // Get home page
 router.get('/home', async function (req, res, next) {
   let funcion = await projectAPI.fetchOneByKey();
   let function2 = await projectAPI.litrosPorDia();
   let funcion3 = await projectAPI.infoFarm();
+  let datosbrutos = await projectAPI.datossensores();
   var auxJSON = JSON.stringify(funcion);
   var auxForV1 = [];
   var litros =[];
@@ -19,6 +25,8 @@ router.get('/home', async function (req, res, next) {
   let lugar =[];
   var irrigationTimeSec =[];
   var cultivo =[];
+  var time =[];
+  var light =[]
   for (let i = 0; i < funcion.length; i++) {
     auxForV1.push(funcion[i].airHumidity)
   }
@@ -38,14 +46,20 @@ router.get('/home', async function (req, res, next) {
   for (let i = 0; i < funcion3.length; i++) {
     cultivo.push(funcion3[i].farmName)
   }
-  
-
-  //console.log(auxForV1);
+  for (let i = 0; i < funcion.length; i++) {
+    time.push(funcion[i].timestamp)
+  }
+  for (let i = 0; i < funcion.length; i++) {
+    light.push(funcion[i].light)
+  }
+  time= JSON.stringify(time)
+datosbrutos = JSON.stringify(datosbrutos);
+ // console.log(auxForV1);
   //console.log(litros);
   //console.log(dia);
- // console.log(lugar);
+//console.log(datosbrutos);
   res.render('home', {
-    auxForV1,litros,dia,irrigationTimeSec,lugar,cultivo
+    auxForV1,litros,dia,irrigationTimeSec,lugar,cultivo,time,light,funcion,datosbrutos
   })
  // console.log("JSON from the table of SensorsData: " + auxJSON);
 }); 

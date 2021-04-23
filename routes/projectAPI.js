@@ -20,7 +20,9 @@ variabless = respone.Items
 //console.log(variabless)
 
 return variabless
+
 };
+
 let litrosPorDia = async function  () {
     var params = {
         TableName: "irrigations",
@@ -46,13 +48,25 @@ info = respone.Items
 
 return info
 };
+let datossensores = async function  () {
+    var params = {
+        TableName: "sensorsData",
 
+    };
+    let request = await docClient.scan(params);
+let respone = await request.promise();
+variabless = respone.Items
+//console.log(variabless)
+
+return variabless
+}
 
 
 module.exports = {
     fetchOneByKey:fetchOneByKey,
     litrosPorDia: litrosPorDia,
-    infoFarm:infoFarm
+    infoFarm:infoFarm,
+    datossensores:datossensores
 }
 /*
 https://docs.aws.amazon.com/sdk-for-javascript/v2/developer-guide/loading-node-credentials-shared.html
