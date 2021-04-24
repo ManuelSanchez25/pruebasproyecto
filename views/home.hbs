@@ -8,7 +8,14 @@
     <title>Document</title>
 
 </head>
+<style>
+    #div1 {
+     overflow:scroll;
+     height:200px;
+     width:900px;
+}
 
+</style>
 
 <body style="background-color:rgba(185, 240, 215, 0.5);">
 
@@ -148,6 +155,7 @@
 
     </table>
 <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Busca por tiempo" title="Type in a name">
+   <div id="div1">
     <table id="myTable">
                 <thead>
                     <tr>
@@ -165,6 +173,7 @@
                     
                 </tbody>
             </table>
+            </div>
           <script>
         var contenido = document.querySelector('#contenido')
 
