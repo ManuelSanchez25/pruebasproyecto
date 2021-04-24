@@ -2,6 +2,8 @@ const AWS = require('aws-sdk');
 
 //var credentials = new AWS.SharedIniFileCredentials({ profile: 'default' });
 const config = {
+    "apiVersion": "2012-08-10",
+
     accessKeyId: process.env.AWS_ACCESS_KEY_ID,
     secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
     region: "us-east-1",
