@@ -13,8 +13,9 @@ router.get('/presentacion', (req, res) => {
 });
 
 // Get home page
-router.get('/home', async function (req, res, next) {
-  let funcion = await projectAPI.fetchOneByKey();
+router.get('/home', async  (req, res, next)=> {
+  try{
+    let funcion = await projectAPI.fetchOneByKey();
   let function2 = await projectAPI.litrosPorDia();
   let funcion3 = await projectAPI.infoFarm();
   let datosbrutos = await projectAPI.datossensores();
@@ -61,6 +62,10 @@ datosbrutos = JSON.stringify(datosbrutos);
   res.render('home', {
     auxForV1,litros,dia,irrigationTimeSec,lugar,cultivo,time,light,funcion,datosbrutos
   })
+  }
+  catch (err) {
+    res.json({ error: 'Does Not exist' })
+  }
  // console.log("JSON from the table of SensorsData: " + auxJSON);
 }); 
 
