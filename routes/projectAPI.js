@@ -20,7 +20,8 @@ let fetchOneByKey = async function  () {
         }
     };
     let request = await docClient.scan(params);
-let respone = await request.promise();
+   // console.log(request)
+let respone = await request.promise(); 
 variabless = respone.Items
 //console.log(variabless)
 
@@ -65,7 +66,7 @@ variabless = respone.Items
 
 return variabless
 }
-
+fetchOneByKey();
 
 module.exports = {
     fetchOneByKey:fetchOneByKey,
