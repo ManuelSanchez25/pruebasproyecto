@@ -1,25 +1,23 @@
-let AWS = require("aws-sdk");
+var AWS = require("aws-sdk");
 require('dotenv').config();
-const config = require('./AWSconfig');
-
 
 //var credentials = new AWS.SharedIniFileCredentials({ profile: 'default' });
-/*const config = {
+const config = {
     accessKeyId: process.env.AWS_ACCESS_KEY_ID,
     accessSecretKey: process.env.AWS_SECRET_ACCESS_KEY,
     region: "us-east-1",
 
-}*/
+}
 
-AWS.config.update(config.aws_remote_config);
 
 
 // Replace ./data.json with your JSON feed
 
 //AWS.config.update({region :"us-east-1"});
-//AWS.config.update({region :"us-east-1"});
+AWS.config.update(config);
 
 
+//AWS.config.credentials = creds;
 let variabless
 let docClient = new AWS.DynamoDB.DocumentClient();
 
