@@ -13,7 +13,8 @@ router.get('/presentacion', (req, res) => {
 });
 
 // Get home page
-router.get('/home', async function (req, res, next) {
+router.get('/home', async  (req, res, next)=> {
+  
   let funcion = await projectAPI.fetchOneByKey();
   let function2 = await projectAPI.litrosPorDia();
   let funcion3 = await projectAPI.infoFarm();
