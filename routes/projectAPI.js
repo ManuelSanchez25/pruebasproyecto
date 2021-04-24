@@ -2,17 +2,21 @@ var AWS = require("aws-sdk");
 require('dotenv').config();
 
 //var credentials = new AWS.SharedIniFileCredentials({ profile: 'default' });
-const config = {
+/*const config = {
     accessKeyId: process.env.AWS_ACCESS_KEY_ID,
     accessSecretKey: process.env.AWS_SECRET_ACCESS_KEY,
     region: "us-east-1",
 
-}
+}*/
+var creds = new AWS.EnvironmentCredentials('AWS');
+creds.accessKeyId =='ASIAVQ3FWTFCO4YWR4PF';
+creds.secretAccessKey == 'I6N5oMy8PgbLY5ETw3ekToWEcUpsFQ4m3XEXi1NV'
+
 
 // Replace ./data.json with your JSON feed
 
 //AWS.config.update({region :"us-east-1"});
-AWS.config.update(config);
+AWS.config.update({region :"us-east-1"});
 
 
 //AWS.config.credentials = config;
