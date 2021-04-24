@@ -8,7 +8,7 @@ router.get('/login', (req, res) => {
 });
 
 //presentacion
-router.get('/presentacion', (req, res) => {
+router.get('/presentacion', async (req, res) => {
   res.render('presentacion');
 });
 
