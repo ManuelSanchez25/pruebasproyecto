@@ -2,7 +2,7 @@
 applications:
 - name: ProyectoIot
   random-route: true
-  memory: 128M
+  memory: 512M
   disk_quota: 256MB
   buildpacks: 
   - sdk-for-nodejs
