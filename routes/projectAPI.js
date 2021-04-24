@@ -4,7 +4,8 @@ var AWS = require("aws-sdk");
 const config = {
     accessKeyId: process.env.AWS_ACCESS_KEY,
     accessSecretKey: process.env.AWS_SECRET_KEY,
-    region: "us-east-1"
+    region: "us-east-1",
+    sessiontoken: process.env.AWS_SESSION_TOKEN
 }
 AWS.config.update(config);
 //AWS.config.credentials = credentials;
