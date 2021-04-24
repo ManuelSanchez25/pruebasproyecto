@@ -1,10 +1,9 @@
-var AWS = require("aws-sdk");
-require('dotenv').config();
+const AWS = require('aws-sdk');
 
 //var credentials = new AWS.SharedIniFileCredentials({ profile: 'default' });
 const config = {
     accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-    accessSecretKey: process.env.AWS_SECRET_ACCESS_KEY,
+    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
     region: "us-east-1",
 
 }
