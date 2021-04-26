@@ -1,22 +1,19 @@
-const AWS = require('aws-sdk');
+var AWS = require('aws-sdk');
 //const config = require('./config.js');
 
 require('dotenv').config();
 
 //var credentials = new AWS.SharedIniFileCredentials({ profile: 'default' });
 const config = {
-    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-    accessSecretKey: process.env.AWS_SECRET_ACCESS_KEY,
-    region: "us-east-1",
-
-}
-
-
+    accessKeyId: process.env.AWS_ACCESS_KEY,
+    accessSecretKey: process.env.AWS_SECRET_KEY,
+    region: "us-east-1"
+};
 
 // Replace ./data.json with your JSON feed
 
-AWS.config.update({
-    config});
+AWS.config.update(
+    config);
     
  //   AWS.config.update({ region: 'us-east-1'});
 
@@ -26,7 +23,6 @@ let variabless
 const docClient = new AWS.DynamoDB.DocumentClient();
 
 let fetchOneByKey = async function  () {
-    AWS.config.update(config.aws_remote_config);
 
     var params = {
         TableName: "sensorsData",
