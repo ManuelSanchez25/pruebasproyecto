@@ -7,10 +7,10 @@ require('dotenv').config();
 const config = {
     accessKeyId: process.env.AWS_ACCESS_KEY,
     accessSecretKey: process.env.AWS_SECRET_KEY,
-    region: "us-east-1"
+    region: "us-east-1",
+    sessionToken: process.env.AWS_SESSION_TOKEN,
 };
 
-// Replace ./data.json with your JSON feed
 
 AWS.config.update(
     config);
