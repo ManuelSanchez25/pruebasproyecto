@@ -9,12 +9,18 @@ router.get('/login', (req, res) => {
 
 //presentacion
 router.get('/presentacion', async (req, res) => {
+  
   res.render('presentacion');
+});
+router.get('/entrar', async (req, res) => {
+  
+  res.render('entrar');
 });
 
 // Get home page
 router.get('/home', async (req, res, next) => {
   try {
+    
     let funcion = await projectAPI.fetchOneByKey();
     let function2 = await projectAPI.litrosPorDia();
     let funcion3 = await projectAPI.infoFarm();

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src = "https://code.jquery.com/jquery-1.11.2.min.js"></script>
+    <script src = "https://sdk.amazonaws.com/js/aws-sdk-2.7.16.min.js"></script>
+    <script src ="https://github.com/amazon-archives/amazon-cognito-identity-js.git"></script>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 class = "h3 mb-3 font-weight-normal" id = "titleheader">Registrate</h1>
+    <input type="personalname" class="form-control" id="personalnameRegister" placeholder="Name">  
+    <input type="email" class="form-control" id="emailInputRegister" placeholder="Email">  
+    <input type="password" class="form-control" id="passwordInputRegister" placeholder="Password">
+    <input type="password" class="form-control" id="confirmationpassword" placeholder="confirm passwrod">
+    <button id ="mainbutton" class="btn btn-lg btn-primary btn-block" type="button" onclick="registerButton()">Registrar usuario</button>
+  
+<script>
+
+    var username;
+    var password;
+    var personalname;
+    var poolData;
+
+    function registerButton(){
+        console.log("hola")
+        personalname = document.getElementById("personalnameRegister").value;
+        username = document.getElementById("emailInputRegister").value;
+        if (document.getElementById("passwordInputRegister").value != document.getElementById("confirmationpassword").value){
+            alert("password do not match")
+        }else{
+            password = document.getElementById("passwordInputRegister").value;
+        }
+        poolData={
+            UserPoolId : 'us-east-1_Hd0KPl74n',
+            clientI:'4ui9tg9i8omc8e1vdihsgof11e'
+        };
+        var userPool = new AmazonCognitoIdentify.CognitoUserPool(poolData);
+        var attributeList =[];
+        var dataEmail ={
+            Name :'email',
+            Value : personalname,
+        };
+        var dataPersonalName ={
+            Name:'name',
+            Value :personalname
+        }
+        var attributeEmail = new AmazonCognitoIdentify.CognitoUserAttribute(dataEmail);
+        var attributePersonalName = new AmazonCognitoIdentify.CognitoUserAttribute(dataPersonalName)
+   attributeList.push(attributeEmail);
+   attributeList.push(attributePersonalName) 
+   userPool.signUp(username, password,attributeList,null,function(err,result){
+       if (err){
+           alert(err.message);
+           return;
+       }
+       congnitoUser = result.user;
+       console.log('user name is ' + congnitoUser.getUsername());
+       document.getElementById('titleheader').innerHTML= "checa tu email";
+       var regusterfiels_list = document.getElementsByName("regerfields")
+       for (var i=0; i< regusterfiels_list.length; i++){
+           regusterfiels_list[i].type = "hidden"
+       }
+   });
+    }
+</script>
+
+</body>
+
+</html>
