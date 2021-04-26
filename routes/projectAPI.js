@@ -5,6 +5,8 @@ require('dotenv').config();
 
 //var credentials = new AWS.SharedIniFileCredentials({ profile: 'default' });
 const config = {
+    //endpoint: "https://ci-cd.mybluemix.net/home",
+    apiVersion: "2012-08-10",
     accessKeyId: process.env.AWS_ACCESS_KEY,
     accessSecretKey: process.env.AWS_SECRET_KEY,
     region: "us-east-1",
@@ -23,7 +25,7 @@ let variabless
 const docClient = new AWS.DynamoDB.DocumentClient();
 
 let fetchOneByKey = async function  () {
-
+//console.log(config)
     var params = {
         TableName: "sensorsData",
         Key: {
