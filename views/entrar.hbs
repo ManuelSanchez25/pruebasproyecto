@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <script src = "https://code.jquery.com/jquery-1.11.2.min.js"></script>
-    <script src = "https://sdk.amazonaws.com/js/aws-sdk-2.7.16.min.js"></script>
-    <script src ="https://github.com/amazon-archives/amazon-cognito-identity-js.git"></script>
+     <script src="https://sdk.amazonaws.com/js/aws-sdk-2.726.0.js"></script>
+     <script src ="https://cdn.jsdelivr.net/npm/amazon-cognito-identity-js@2.0.16-unstable.1/dist/amazon-cognito-identity.min.js"></script>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+
 </head>
 <body>
     <h1 class = "h3 mb-3 font-weight-normal" id = "titleheader">Registrate</h1>
@@ -18,7 +19,6 @@
     <button id ="mainbutton" class="btn btn-lg btn-primary btn-block" type="button" onclick="registerButton()">Registrar usuario</button>
   
 <script>
-
     var username;
     var password;
     var personalname;
@@ -34,21 +34,22 @@
             password = document.getElementById("passwordInputRegister").value;
         }
         poolData={
-            UserPoolId : 'us-east-1_Hd0KPl74n',
-            clientI:'4ui9tg9i8omc8e1vdihsgof11e'
+            UserPoolId:'us-east-1_Hd0KPl74n',
+            ClientId:'4ui9tg9i8omc8e1vdihsgof11e'
         };
-        var userPool = new AmazonCognitoIdentify.CognitoUserPool(poolData);
+                
+                var userPool = new AmazonCognitoIdentity.CognitoUserPool(poolData);   
         var attributeList =[];
         var dataEmail ={
             Name :'email',
-            Value : personalname,
+            Value : username,
         };
         var dataPersonalName ={
             Name:'name',
             Value :personalname
         }
-        var attributeEmail = new AmazonCognitoIdentify.CognitoUserAttribute(dataEmail);
-        var attributePersonalName = new AmazonCognitoIdentify.CognitoUserAttribute(dataPersonalName)
+        var attributeEmail = new AmazonCognitoIdentity.CognitoUserAttribute(dataEmail);
+        var attributePersonalName = new AmazonCognitoIdentity.CognitoUserAttribute(dataPersonalName)
    attributeList.push(attributeEmail);
    attributeList.push(attributePersonalName) 
    userPool.signUp(username, password,attributeList,null,function(err,result){

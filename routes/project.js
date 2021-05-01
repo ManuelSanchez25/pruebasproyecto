@@ -2,6 +2,15 @@ const express = require('express');
 const router = express.Router();
 const projectAPI = require('./projectAPI');
 
+//API for the project Cloud 2021 of AWS S3
+const APIS3 = require('./s3proyecto')
+
+//Get user page
+router.get('/usuarios', async function (req, res, next)  {
+  const dataFromS3 = await APIS3.getUsersFromS3();
+  res.send(dataFromS3);
+  console.log(dataFromS3);
+});
 // Get Login page
 router.get('/login', (req, res) => {
   res.render('login');
@@ -13,8 +22,10 @@ router.get('/presentacion', async (req, res) => {
   res.render('presentacion');
 });
 router.get('/entrar', async (req, res) => {
-  
-  res.render('entrar');
+  res.render('entrar',);
+});
+router.get('/iniciar', async (req, res) => {
+  res.render('iniciar',);
 });
 
 // Get home page

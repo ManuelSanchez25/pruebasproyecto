@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src = "https://code.jquery.com/jquery-1.11.2.min.js"></script>
+     <script src="https://sdk.amazonaws.com/js/aws-sdk-2.726.0.js"></script>
+     <script src ="https://cdn.jsdelivr.net/npm/amazon-cognito-identity-js@2.0.16-unstable.1/dist/amazon-cognito-identity.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <form>
+        <h1>Iniciar Sesion</h1>
+        <input type="text" id="inputUsername" placeholder="Correo" name="username">
+        <input type="password" id="inputPassword" placeholder="Contraseña" name="password">
+        <button type="button" onclick="signInButton()">Iniciar</button>
+            </form>
+            <script>
+                function signInButton(){
+                    var authenticationData ={
+                        Username: document.getElementById("inputUsername").value,
+                        Password: document.getElementById("inputPassword").value,
+                    };
+                    var autenticationDetails = new AmazonCognitoIdentity.AuthenticationDetails(authenticationData);
+                    var poolData={
+                            UserPoolId:'us-east-1_Hd0KPl74n',
+                            ClientId:'4ui9tg9i8omc8e1vdihsgof11e',
+                    };
+                   var userPool = new AmazonCognitoIdentity.CognitoUserPool(poolData); 
+                   var userData ={
+                       Username: document.getElementById("inputUsername").value,
+                       Pool:userPool,
+                   } ;
+                   var cognitoUser = new AmazonCognitoIdentity.CognitoUser(userData);
+                   cognitoUser.authenticateUser(autenticationDetails,{
+                       onSuccess:function(result){
+                           var accessToken = result.getAccessToken().getJwtToken();
+                           console.log(accessToken);
+                           window.location.replace('http://localhost:3000/home');
+                       },
+                       onFailure: function(err){
+                           alert(err.message)
+                       },
+                   });
+
+                }
+
+            </script>
+</body>
+</html>
