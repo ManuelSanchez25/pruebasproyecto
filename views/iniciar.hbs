@@ -37,7 +37,7 @@
                        onSuccess:function(result){
                            var accessToken = result.getAccessToken().getJwtToken();
                            console.log(accessToken);
-                           window.location.replace('http://localhost:3000/home');
+                           window.location.replace('https://ci-cd.mybluemix.net/home');
                        },
                        onFailure: function(err){
                            alert(err.message)
