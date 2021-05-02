@@ -1,0 +1,20 @@
+[
+    {
+      "day": 10,
+      "irrigationId": "d90b1334-6f49-609c-2051-2fdfb5c9fd4c",
+      "irrigationTimeSec": 130,
+      "litersUsed": 10.54,
+      "month": 4,
+      "time": "16:20",
+      "year": 2021
+    },
+    {
+      "day": 11,
+      "irrigationId": "da90b1334-6f49-609c-2051-2fdfb5c9fd4c",
+      "irrigationTimeSec": 130,
+      "litersUsed": 1.54,
+      "month": 4,
+      "time": "16:20",
+      "year": 2021
+    }
+  ]

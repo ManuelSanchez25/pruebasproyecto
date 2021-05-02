@@ -1,3 +1,4 @@
+const { json } = require('express');
 const express = require('express');
 const router = express.Router();
 const projectAPI = require('./projectAPI');
@@ -6,8 +7,8 @@ const projectAPI = require('./projectAPI');
 const APIS3 = require('./s3proyecto')
 
 //Get user page
-router.get('/usuarios', async function (req, res, next)  {
-  const dataFromS3 = await APIS3.getUsersFromS3();
+router.get('/s3obtener', async function (req, res, next)  {
+  const dataFromS3 = await APIS3.getfarmsFromS3();
   res.send(dataFromS3);
   console.log(dataFromS3);
 });
@@ -31,11 +32,12 @@ router.get('/iniciar', async (req, res) => {
 // Get home page
 router.get('/home', async (req, res, next) => {
   try {
-    
+    let s3funcion = await APIS3.getfarmsFromS3();
     let funcion = await projectAPI.fetchOneByKey();
     let function2 = await projectAPI.litrosPorDia();
     let funcion3 = await projectAPI.infoFarm();
     let datosbrutos = await projectAPI.datossensores();
+     s3funcion = JSON.parse(s3funcion)
     var auxJSON = JSON.stringify(funcion);
     var auxForV1 = [];
     var litros = [];
@@ -48,15 +50,15 @@ router.get('/home', async (req, res, next) => {
     for (let i = 0; i < funcion.length; i++) {
       auxForV1.push(funcion[i].airHumidity)
     }
-    for (let i = 0; i < function2.length; i++) {
-      litros.push(function2[i].litersUsed)
+    for (let i = 0; i < s3funcion.length; i++) {
+      litros.push(s3funcion[i].litersUsed)
     }
-    for (let i = 0; i < function2.length; i++) {
-      dia.push(function2[i].day)
+    for (let i = 0; i < s3funcion.length; i++) {
+      dia.push(s3funcion[i].day)
     }
   
-    for (let i = 0; i < function2.length; i++) {
-      irrigationTimeSec.push(function2[i].irrigationTimeSec)
+    for (let i = 0; i < s3funcion.length; i++) {
+      irrigationTimeSec.push(s3funcion[i].irrigationTimeSec)
     }
     for (let i = 0; i < funcion3.length; i++) {
       lugar.push(funcion3[i].City)
@@ -72,10 +74,10 @@ router.get('/home', async (req, res, next) => {
     }
     time = JSON.stringify(time)
     datosbrutos = JSON.stringify(datosbrutos);
-    // console.log(auxForV1);
-    //console.log(litros);
-    //console.log(dia);
-    //console.log(datosbrutos);
+     console.log(s3funcion);
+     console.log(function2);
+
+ 
     res.render('home', {
       auxForV1,
       litros,

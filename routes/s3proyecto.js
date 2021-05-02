@@ -1,4 +1,5 @@
 const AWS = require('aws-sdk');
+require('dotenv').config();
 
 const SESConfig = {
   apiVersion: "2012-08-10",
@@ -13,11 +14,11 @@ AWS.config.update(SESConfig);
 
 var s3 = new AWS.S3();
 
-let getUsersFromS3 = async function getObject () {
+let getfarmsFromS3 = async function getObject () {
     try {
       const params = {
         Bucket: "s3proyecto", // your bucket name,
-        Key: "users.json" // path to the object you're looking for
+        Key: "farms.json" // path to the object you're looking for
       }
   
       const data = await s3.getObject(params).promise();
@@ -30,5 +31,5 @@ let getUsersFromS3 = async function getObject () {
 
 
 module.exports = {
-    getUsersFromS3: getUsersFromS3
+  getfarmsFromS3: getfarmsFromS3
 }
